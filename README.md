@@ -1,7 +1,7 @@
 # API-Java
 Criação de uma API RESTful com Java e Spring Framework.
 
-Projeto desenvolvido na Algaworks. 
+Projeto desenvolvido em um curso da Algaworks. 
 
 Usando tecnologias: JPA, Hibernate, Flyway e Jakarta EE.
 
