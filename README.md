@@ -3,7 +3,7 @@ Criação de uma API RESTful com Java e Spring Framework.
 
 Projeto desenvolvido na Algaworks. 
 
-Usando tecnologias: JPA, Hibernate, Flyway e Jackarta EE.
+Usando tecnologias: JPA, Hibernate, Flyway e Jakarta EE.
 
 Durante o desenvolvimento do projeto, foi utilizado alguns conceitos e padrões do Domain-Driven Design (DDD).
 
