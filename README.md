@@ -10,7 +10,7 @@ Durante o desenvolvimento do projeto, foi utilizado alguns conceitos e padrões 
 Utilizei o padrão DTO(Data transfer object) para realizar a separação entre o Domain Model vs Representation Model.
 Com essa separação ficou claro que a regra da API ficou isolada da regra do dominio da aplicação.
 
-Utilizei o ModelMapper para realizar conversão de objetos em formato JSON.
+Realizei a instalação do ModelMapper atravez da classe pom.xml do Maven. Utilizei o ModelMapper para realizar conversão entre objetos.
 
 Utilizei o Padrão ISO-8601 para Data e Hora.
 
