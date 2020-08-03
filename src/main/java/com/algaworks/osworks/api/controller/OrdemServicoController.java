@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -45,8 +46,7 @@ public class OrdemServicoController {
 	@ResponseStatus(HttpStatus.CREATED) //Respostsa de Sucesso quando cria
 	public OrdemServicoModel criar(@Valid @RequestBody OrdemServicoInput ordemServicoInput) {
 		OrdemServico ordermServico = toEntity(ordemServicoInput);
-		return toModel(gestaoOrdemServico.criar(ordermServico));
-	} 
+		return toModel(gestaoOrdemServico.criar(ordermServico)); } 
 
 	
 	
@@ -54,8 +54,7 @@ public class OrdemServicoController {
 	
 	@GetMapping //   
 	public List<OrdemServicoModel> listar(){
-		return toCollectionModel(ordemSercivoRepository.findAll());
-	}
+		return toCollectionModel(ordemSercivoRepository.findAll()); }
 	
 	
 	
@@ -75,20 +74,39 @@ public class OrdemServicoController {
 	}
 	
 	
+	@PutMapping("{ordemServicoId}/finalizacao")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void finalizar(@PathVariable Long ordemServicoId) {
+		gestaoOrdemServico.finalizar(ordemServicoId);
+	}
 	
 	
-	
-	
-		
+	/** *** toModel ***
+	 * Utilizei o ModelMapper para realizar conversão entre objetos. 		
+	 * @param ordemServico
+	 * @return OrdemServicoModel (Model do Representation Model)
+	 */
 	private OrdemServicoModel toModel(OrdemServico ordemServico) {
-		return modelMapper.map(ordemServico, OrdemServicoModel.class);	 
-	}
+		return modelMapper.map(ordemServico, OrdemServicoModel.class);}
 	
 	
+	
+	
+	/**
+	 * Conversão de Lista de OrdemServiço para Lista de OrdemServico Model.
+	 * @param List<OrdensServico>
+	 * @return List<OrdemServicoModel>
+	 */
 	private List<OrdemServicoModel> toCollectionModel(List<OrdemServico> ordensServico) {
-		return  ordensServico.stream().map(ordemServico -> toModel(ordemServico))
-				.collect(Collectors.toList());		 
-	}
+		return  ordensServico.stream().map(   ordemServico -> toModel(ordemServico)    ).collect(Collectors.toList());}
+	
+	
+	
+	/**
+	 *  Convesão de OrdemServicoInput retornará uma OrdemServico utilizando o ModelMapper
+	 * @param ordemServicoInput
+	 * @return
+	 */
 	
 	private OrdemServico toEntity(OrdemServicoInput ordemServicoInput) {
 		return modelMapper.map(ordemServicoInput, OrdemServico.class);

@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.algaworks.osworks.api.model.Comentario;
+import com.algaworks.osworks.domain.exception.NegocioException;
 
 @Entity
 public class OrdemServico {
@@ -131,11 +132,34 @@ public class OrdemServico {
 	}
 	
 	
+	/**
+	 * 
+	 * @return TRUE IF PODE SER FINALIZADA
+	 */
+	public boolean podeSerFinalizada() {
+		return StatusOrdemServico.ABERTA.equals(getStatus());
+	}
 	
+	/**
+	 * 
+	 * @return TRUE IF NÃO PODE SER FINALIZADA
+	 */
+	public boolean naoPodeSerFinalizada() {
+		return !podeSerFinalizada();
+	}
 	
-
-	
-
+	/**
+	 * FINALIZAR ORDEM DE SERVICO
+	 */
+	public void finalizar() {
+		
+		if(naoPodeSerFinalizada()) {
+			throw new NegocioException("Ordem de Serviço não pode ser finalizada pois não esta aberta");
+		}
+		
+		setStatus(StatusOrdemServico.FINALIZADA);
+		setDataFinalizacao(OffsetDateTime.now());
+	}
 	
 	
 	

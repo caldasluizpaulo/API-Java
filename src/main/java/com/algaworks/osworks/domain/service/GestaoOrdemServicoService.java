@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.algaworks.osworks.api.model.Comentario;
+import com.algaworks.osworks.domain.exception.EntidadeNaoEncontradaException;
 import com.algaworks.osworks.domain.exception.NegocioException;
 import com.algaworks.osworks.domain.model.Cliente;
 import com.algaworks.osworks.domain.model.OrdemServico;
@@ -28,6 +29,16 @@ public class GestaoOrdemServicoService {
 	
 	
 	
+	public void finalizar(Long ordemServicoId) {
+		OrdemServico ordemServico = buscar(ordemServicoId); 
+		
+		//ordemServico.setStatus(StatusOrdemServico.FINALIZADA);
+		ordemServico.finalizar();
+		
+		ordermServicoRepository.save(ordemServico);
+	}
+
+
 	
 	
 	public OrdemServico criar(OrdemServico ordemServico) {
@@ -40,27 +51,36 @@ public class GestaoOrdemServicoService {
 		ordemServico.setStatus(StatusOrdemServico.ABERTA);
 		ordemServico.setDataAbertura(OffsetDateTime.now());
 		
-		return ordermServicoRepository.save(ordemServico);
-	}
+		return ordermServicoRepository.save(ordemServico);  
+		}
 	
-	
-	
-	
-	
-	
-	
-//  *** CRIAR COMENTARIO DA ORDEM DE SERVICO ***
+		
+	/**
+	 *   *** CRIAR COMENTARIO DA ORDEM DE SERVICO ***
+	 *   Não criamos um CadastroComentarioServico por Comentarios tem uma forte influencia com OrdemServiço
+	 * @param ordemServicoId
+	 * @param descricao
+	 * @return Comentario
+	 */
 	public Comentario adicionarComentario(Long ordemServicoId, String descricao) {
 
-		OrdemServico ordemServico = ordermServicoRepository.findById(ordemServicoId)
-				.orElseThrow(() -> new NegocioException("Cliente não encontrado"));
+		OrdemServico ordemServico = buscar(ordemServicoId); 
 		
 		Comentario comentario = new Comentario();
 		comentario.setDataEnvio(OffsetDateTime.now());
 		comentario.setDescricao(descricao);
 		comentario.setOrdemServico(ordemServico);
 		
-		return comentarioRepository.save(comentario);
-	}
+		return comentarioRepository.save(comentario);  
+		}
+	
+	
+	
+	private OrdemServico buscar(Long ordemServicoId) {
+		return   ordermServicoRepository.findById(ordemServicoId)
+				.orElseThrow(    () -> new EntidadeNaoEncontradaException("Ordem de Serviço não Encontrada")   );
+		}
+	
+	
 	
 }
