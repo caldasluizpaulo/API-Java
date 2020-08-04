@@ -1,0 +1,299 @@
+{
+	"info": {
+		"_postman_id": "43a39b20-adf0-41a9-a3d8-cee502682a97",
+		"name": "OSWORK",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Clientes",
+			"item": [
+				{
+					"name": "Clientes - Listar",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/clientes",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clientes - Buscar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/clientes/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clientes",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clientes - Adicionar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\": \"Cristiante\",\n\t\"email\": \"critiane@gmail.com\",\n\t\"telefone\": \"71931-3429\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/clientes",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clientes - Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\": \"Cleusa Calda de Faria\",\n\t\"email\": \"cleusa.caldas@hotmail.com\",\n\t\"telefone\": \"71991-5530\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/clientes/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clientes",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clientes - Deletar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/clientes/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clientes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Ordens de serivço",
+			"item": [
+				{
+					"name": "Ordem de Serviço - Adicionar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\n\t\"cliente\":{\n\t\"id\": 2\n\t},\n\t\"descricao\": \"Cliente sinaliza que o computador não esta ligando\",\n\t\"preco\": 600.50\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/ordens-servico",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ordens-servico"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Comentário - Adicionar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\n\t\"descricao\": \"Mememoria principal de 8Gb trocada\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/ordens-servico/2/comentarios",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ordens-servico",
+								"2",
+								"comentarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Comentário - Listar",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/ordens-servico/2/comentarios",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ordens-servico",
+								"2",
+								"comentarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ordem de Serviço - Listar",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/ordens-servico",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ordens-servico"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ordem de Serviço - Buscar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/ordens-servico/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ordens-servico",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ordem de Serviço - Finalizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/ordens-servico/1/finalizacao",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ordens-servico",
+								"1",
+								"finalizacao"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
