@@ -16,7 +16,7 @@ Anotando uma nova classe com inicialização e estanciamento do ModelMapper como
 @Configuration, para informar ao Spring que é um componente identifivel com esse objetivo especifico de configuração de Bean's.
 @Bean, para informar ao Spring que esta classe será disponibilizada para injeção de independencia para outras classes.
 
-Utilizei o postman para realizar simulações de requisições em HTTP. As requisições estão anexadas do repositorio.
+Utilizei o postman para realizar simulações de requisições em HTTP. As requisições estão anexadas no repositorio.
 
 Utilizei o Padrão ISO-8601 para Data e Hora.
 
